@@ -6,9 +6,9 @@ import threading
 
 #створи картинки CTKImage
 FON = CTkImage(light_image=Image.open("fon.png"),size=(350,400))#fon 350,400
-CONF = CTkImage(light_image=Image.open("conf.png"),size=(20,20))#conf 20,20
-USER = CTkImage(light_image=Image.open("user.png"),size=(20,20))#user 20,20
-ICONS = [] #user icons 20,20
+CONF = CTkImage(light_image=Image.open("conf.png"),size=(24,24))#conf 24,24
+USER = CTkImage(light_image=Image.open("user.png"),size=(24,24))#user 24,24
+ICONS = [] #user icons 24,24
 for i in range(7):
     ICONS.append(CTkImage(light_image=Image.open(f"{i}.png"),size=(70,70)))
 #кольори
@@ -29,7 +29,7 @@ class MyLbl(CTkLabel):
 class MyBtn(CTkButton):
     def __init__(self, master,image=None,height = 40,width= 140,text = "text",command=None ):
         super().__init__(master, width = width, height = height,
-                         text =text,corner_radius=20,fg_color=PURPULE,
+                         text =text,corner_radius=24,fg_color=PURPULE,
                          hover_color=MEDIUMBLUE,font = ("Arial",16,"bold"),
                          text_color="white",image=image,command=command )
         
@@ -39,7 +39,7 @@ class Mess(CTkLabel):
         icon = CTkImage(light_image=Image.open(f"{icon}.png"),size=(25,25))
         super().__init__(master = master, fg_color="#f2f2f2",
                          text_color="#000000",font=("Arial",16,"bold"),
-                         image=icon,compound= "left",corner_radius=20,padx = 10,pady=10,text=f"{user}: {text}")
+                         image=icon,compound= "left",corner_radius=24,padx = 10,pady=10,text=f"{user}: {text}")
         self.pack(anchor=anchor,padx=50,pady=2)
 
         
@@ -67,14 +67,14 @@ class App(CTk):
 
 
         self.btn_name = MyBtn(self,text="Enter Name",image=USER,command=self.open_name)
-        self.btn_name.place(x = 405,y = 120)
+        self.btn_name.place(x = 405,y = 124)
 
         self.btn_icon = MyBtn(self,text="Enter icon",image=CONF,command=self.open_icon)
-        self.btn_icon.place(x = 400,y = 188)
+        self.btn_icon.place(x = 405,y = 188)
 
         self.btn_chat = MyBtn(self,width=100,text="Enter chat",command=self.open_chat)
         self.btn_chat.configure(fg_color = PHLOX,text_color="grey")
-        self.btn_chat.place(x = 405,y = 260)
+        self.btn_chat.place(x = 431,y = 260)
 
         self.frame_name = CTkFrame(self,fg_color=PHLOX,width=350,height=400)
         self.frame_name.place(x=-350,y=0)
@@ -86,29 +86,29 @@ class App(CTk):
         self.input_name.place(x = 75,y = 150)
 
         self.btn_save_name = MyBtn(self.frame_name,text ="save_name",command=self.save_name)
-        self.btn_save_name.place(x =100,y=200)
+        self.btn_save_name.place(x =100,y=240)
 
         self.frame_icon= CTkFrame(self,fg_color=PHLOX,width=350,height=400)
         self.frame_icon.place(x=-350,y=0)
 
         btn = MyBtn(self.frame_icon,width=75,height=75,image = ICONS[1],
                     command= lambda i=1: self.save_icon(i),text="")
-        btn.grid(row=0,column = 0 ,padx = 23,pady = 20 )
+        btn.grid(row=0,column = 0 ,padx = 31,pady = 24 )
         btn = MyBtn(self.frame_icon,width=75,height=75,image = ICONS[2],
                     command= lambda i=2: self.save_icon(i),text="")
-        btn.grid(row=0,column = 1,padx = 23,pady = 20 )
+        btn.grid(row=0,column = 1,padx = 31,pady = 24 )
         btn = MyBtn(self.frame_icon,width=75,height=75,image = ICONS[3],
                     command= lambda i=3: self.save_icon(i),text="")
-        btn.grid(row=1,column = 0 ,padx = 23,pady = 20 )
+        btn.grid(row=1,column = 0 ,padx = 31,pady = 24 )
         btn = MyBtn(self.frame_icon,width=75,height=75,image = ICONS[4],
                     command= lambda i=4: self.save_icon(i),text="")
-        btn.grid(row=1,column = 1 ,padx = 23,pady = 20 )
+        btn.grid(row=1,column = 1 ,padx = 31,pady = 24 )
         btn = MyBtn(self.frame_icon,width=75,height=75,image = ICONS[5],
                     command= lambda i=5: self.save_icon(i),text="")
-        btn.grid(row=2,column = 0 ,padx = 23,pady = 20 )
+        btn.grid(row=2,column = 0 ,padx = 31,pady = 24 )
         btn = MyBtn(self.frame_icon,width=75,height=75,image = ICONS[6],
                     command= lambda i=6: self.save_icon(i),text="")
-        btn.grid(row=2,column = 1 ,padx = 23,pady = 20 )
+        btn.grid(row=2,column = 1 ,padx = 31,pady = 24 )
 
         self.frame_chat = CTkFrame(self,fg_color="#c78888",width=600,height=400)
         
@@ -119,9 +119,9 @@ class App(CTk):
         self.all_mess.place(x = 0 ,y=0)
 
         self.inp_mess = CTkTextbox(self.frame_chat,width=350,height=50,fg_color=BLUE,corner_radius=30)
-        self.inp_mess.place(x = 20,y = 320)
+        self.inp_mess.place(x = 24,y = 324)
         self.btn_send_mess = MyBtn(self.frame_chat,width=50,height=50,text="send",command=self.send_mess)
-        self.btn_send_mess.place(x = 400,y= 320)
+        self.btn_send_mess.place(x = 400,y= 324)
 
     def open_name(self):
         self.nx = -350
