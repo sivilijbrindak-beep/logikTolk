@@ -55,7 +55,8 @@ class App(CTk):
 
         self.USER = "ananim"
         self.ICON = 0
-
+        self.HOST = "0"
+        self.PORT = 8080
 
 
         self.lbl = MyLbl(self,text = "WELCOM",size = 40,image=FON)
@@ -123,6 +124,29 @@ class App(CTk):
         self.btn_send_mess = MyBtn(self.frame_chat,width=50,height=50,text="send",command=self.send_mess)
         self.btn_send_mess.place(x = 400,y= 324)
 
+        self.frame_start = CTkFrame(self,600,400,fg_color="#4C474B")
+        self.frame_start.place(x=0,y=0)
+        self.input_port = CTkEntry(self.frame_start,width=150,height=30,fg_color="white",corner_radius=30,placeholder_text="port")
+        self.input_port.place(x = 100,y = 150)
+
+        self.input_host = CTkEntry(self.frame_start,width=150,height=30,fg_color="white",corner_radius=30,placeholder_text="port")
+        self.input_host.place(x = 100,y = 220)
+
+        self.btn_begin = MyBtn(self.frame_start,text ="begin",command=self.begin)
+        self.btn_begin.place(x =100,y=240)
+
+    def begin(self):
+        self.PORT = int(self.input_port.get())
+        self.HOST = int(self.input_host.get())
+        self.frame_start.destroy()
+
+    def start(self):
+        self.HOST = self.input_host.get()
+        self.PORT = int(self.input_port.get())
+        self.frame_start.destroy()
+
+
+
     def open_name(self):
         self.nx = -350
         def anim():
@@ -169,7 +193,7 @@ class App(CTk):
 
         try:
             self.socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-            self.socket.connect(("0.tcp.eu.ngrok.io",11771))
+            self.socket.connect((f"{self.HOST}.tcp.eu.ngrok.io",self.PORT))
             self.socket.send(f"{self.USER}|{self.ICON}".encode())
             Mess(self.all_mess,self.USER,self.ICON,"welcome to chat","w")
             input = threading.Thread(target=self.input_mess,daemon=True)
@@ -205,6 +229,10 @@ class App(CTk):
         except:
             Mess(self.all_mess,"server",0,"Goodby")
             self.after(100,self.close)
+
+
+
+           
         
         
 
