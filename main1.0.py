@@ -129,11 +129,11 @@ class App(CTk):
         self.input_port = CTkEntry(self.frame_start,width=150,height=30,fg_color="white",corner_radius=30,placeholder_text="port")
         self.input_port.place(x = 100,y = 150)
 
-        self.input_host = CTkEntry(self.frame_start,width=150,height=30,fg_color="white",corner_radius=30,placeholder_text="port")
+        self.input_host = CTkEntry(self.frame_start,width=150,height=30,fg_color="white",corner_radius=30,placeholder_text="host")
         self.input_host.place(x = 100,y = 220)
 
         self.btn_begin = MyBtn(self.frame_start,text ="begin",command=self.begin)
-        self.btn_begin.place(x =100,y=240)
+        self.btn_begin.place(x =100,y=280)
 
     def begin(self):
         self.PORT = int(self.input_port.get())
