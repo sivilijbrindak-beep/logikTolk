@@ -3,14 +3,28 @@ from PIL import Image
 import socket
 import threading
 
+import os
+import sys
+
+def resource_path(relative_path):
+    try:
+    
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    p = os.path.join(base_path,"img")
+    p = os.path.join(p,relative_path)
+
+    return p
+
 
 #створи картинки CTKImage
-FON = CTkImage(light_image=Image.open("fon.png"),size=(350,400))#fon 350,400
-CONF = CTkImage(light_image=Image.open("conf.png"),size=(24,24))#conf 24,24
-USER = CTkImage(light_image=Image.open("user.png"),size=(24,24))#user 24,24
+FON = CTkImage(light_image=Image.open(resource_path("fon.png")),size=(350,400))#fon 350,400
+CONF = CTkImage(light_image=Image.open(resource_path("conf.png")),size=(24,24))#conf 24,24
+USER = CTkImage(light_image=Image.open(resource_path("user.png")),size=(24,24))#user 24,24
 ICONS = [] #user icons 24,24
 for i in range(7):
-    ICONS.append(CTkImage(light_image=Image.open(f"{i}.png"),size=(70,70)))
+    ICONS.append(CTkImage(light_image=Image.open(resource_path(f"{i}.png")),size=(70,70)))
 #кольори
 BLUE= "#5D89EA"
 CYAN = "#2EB3E4"
@@ -50,7 +64,7 @@ class App(CTk):
         self.geometry("600x400")
         self.configure(fg_color= "#4C474B")
         self.title("LogikTalk")
-        self.iconbitmap("icon.ico")
+        self.iconbitmap(resource_path("icon.ico"))
         self.resizable(False,False)
 
         self.USER = "ananim"
